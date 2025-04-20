@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 phoneElements.forEach(e =>{
                     e.style.background = "transparent"
                 });
+
+
             } else {
                 navLinks.forEach(link => {
                     link.style.color = "white";
@@ -90,16 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     }
                 });
-                if(!nav.classList.contains("mobile-opened")){
-                    nav.style.background = "#FF8548";
-                    nav.style.transition = "all 0.5s ease-in";
-                }
 
-                phoneElements.forEach(e=>{
-                    e.style.background= "transparent";
-                    e.style.transition = "all 0.5s ease-in";
+                nav.classList.add("mobile-closed");
 
-                })
+                
 
             }else{
 
@@ -110,17 +106,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     }
                 });
-                if(!nav.classList.contains("mobile-opened")){
-                    nav.style.background = "transparent";
-                    nav.style.transition = "all 0.5s ease-in";
 
-                }
+                nav.classList.remove("mobile-closed");
 
-                phoneElements.forEach(e=>{
-                    e.style.background= "white";
-                    e.style.transition = "all 0.5s ease-in";
 
-                })
+                
 
             }
 
@@ -145,6 +135,13 @@ document.addEventListener('DOMContentLoaded', function() {
             top: target.offsetTop-200,
             behavior: 'smooth'
         });
+    });
+
+    navLinks.forEach(a=>{
+        a.addEventListener("click",()=>{
+            nav.classList.remove("mobile-opened");
+        });
+
     });
 
 

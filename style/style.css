@@ -435,10 +435,10 @@ form#contact input:not(.cta-org), form#contact textarea{
     margin:1rem auto;
     width:100%;
     max-width: 35rem;
-    padding:0.5rem;
+    padding:0.5rem 1REM;
     border:none;
     box-shadow: 2px 2px 5px grey;
-    border-radius: 5rem;
+    border-radius: 1rem;
 }
 
 input.cta-org{
@@ -599,6 +599,19 @@ footer .logo{
     .phone-element{
         display:block;
     }
+
+    header nav.mobile-closed{
+        background:#FF8548;
+        transition: all 0.5s ease-in;
+
+
+    }
+
+    header nav.mobile-closed .phone-element{
+        background:transparent;
+
+    }
+    
 
     
     header nav.mobile-opened{
