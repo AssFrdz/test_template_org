@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const scrollableContent = document.querySelector('.slides');
-    
+    const nav = document.querySelector("header nav");
+    const navLinks = document.querySelectorAll("header nav a");
+    const phoneElements = document.querySelectorAll(".phone-element");
+    const rsx = document.querySelector(".rsx-bar");
+
     let scrollInterval;
 
     // Fonction pour démarrer le scroll automatique
@@ -29,57 +33,125 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoScroll();
     });
 
+    /* Normalize image name: food_1.jpg for example */
+    let normalizedName = "food";
+    let ext = ".jpg";
+    let imagesTab = [];
+    let numImages = 12;
+
+    for (let i = 0; i < numImages; i++) {
+        imagesTab.push(normalizedName + "_" + i + ext);
+    }
+
+    function addImagesToSlides(slides, imgTab) {
+        imgTab.forEach(element => {
+            let img = document.createElement("img");
+            img.src = "../assets/img/" + element;
+            slides.appendChild(img);
+        });
+    }
+
+    addImagesToSlides(scrollableContent, imagesTab);
+
+    const handleScroll = () => {
+
+        if(window.innerWidth > 930){
+            if ( window.scrollY > 1000) {
+                navLinks.forEach(link => {
+                    link.style.color = "black";
+                    document.querySelector("nav").style.background = "#FF8548";
+                    document.querySelector("nav").style.transition = "all 0.5s ease-in";
+                    link.style.transition = "all 0.5s ease-in";
+    
+                    
+                });
+                phoneElements.forEach(e =>{
+                    e.style.background = "transparent"
+                });
+            } else {
+                navLinks.forEach(link => {
+                    link.style.color = "white";
+                    document.querySelector("nav").style.background = "transparent";
+                    document.querySelector("nav").style.transition = "all 0.5s ease-in";
+                    link.style.transition = "all 0.5s ease-in";
+                 
+                });
+                phoneElements.forEach(e =>{
+                    e.style.background = "white";
+                });
+            }
+        }
+        else{
+            if(window.scrollY > 1000){
+                navLinks.forEach(link => {
+                    if(link.classList.contains("logo")){
+                        link.style.color = "black";
+                        link.style.transition = "all 0.5s ease-in";
+    
+                    }
+                });
+                if(!nav.classList.contains("mobile-opened")){
+                    nav.style.background = "#FF8548";
+                    nav.style.transition = "all 0.5s ease-in";
+                }
+
+                phoneElements.forEach(e=>{
+                    e.style.background= "transparent";
+                    e.style.transition = "all 0.5s ease-in";
+
+                })
+
+            }else{
+
+                navLinks.forEach(link => {
+                    if(link.classList.contains("logo")){
+                        link.style.color = "white";
+                        link.style.transition = "all 0.5s ease-in";
+    
+                    }
+                });
+                if(!nav.classList.contains("mobile-opened")){
+                    nav.style.background = "transparent";
+                    nav.style.transition = "all 0.5s ease-in";
+
+                }
+
+                phoneElements.forEach(e=>{
+                    e.style.background= "white";
+                    e.style.transition = "all 0.5s ease-in";
+
+                })
+
+            }
+
+
+        }
+        
+    };
+    
+    const afficheMenu = ()=>{
+        nav.classList.toggle("mobile-opened")
+
+
+    }
+
+    window.addEventListener('scroll', handleScroll);
     
 
-
-/* normalize ur image name : food_1.jpg for example*/ 
-
-let normalizedName = "food";
-
-/* ur extension */
-
-let ext = ".jpg";
-
-/* the img tab */
-
-let imagesTab = [];
-
-/* the number of images */
-
-let numImages = 12;
-
-for(i=0;i<numImages;i++){
-    imagesTab.push(normalizedName+"_"+i+ext);
-}
-
-
-
-/* or you can make the imagesTab alone, like this : 
-
-let imagesTab = ["nuggets.jpg","burger.jpg","bread.png"];
-
-In both case, ensure you have put the images in the folder "assets/img"
-
-*/
-
-
-function addImagesToSlides(slides, imgTab){
-
-    imgTab.forEach(element => {
-
-    img = document.createElement("img");
-    img.src = "../assets/img/"+element;
-    slides.appendChild(img);
-        
+    phoneElements[0].addEventListener("click",afficheMenu)
+    phoneElements[1].addEventListener("click",()=>{
+        target = document.getElementById("mail");
+        window.scrollTo({
+            top: target.offsetTop-200,
+            behavior: 'smooth'
+        });
     });
 
+
+
+
     
-
-}
-
-addImagesToSlides(scrollableContent, imagesTab);
 
 
 
 });
-
