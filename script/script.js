@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     phoneElements[0].addEventListener("click",afficheMenu)
+    
     phoneElements[1].addEventListener("click",()=>{
         target = document.getElementById("mail");
         window.scrollTo({
