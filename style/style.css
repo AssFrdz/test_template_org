@@ -621,6 +621,8 @@ footer .logo{
             justify-content:center;
             align-items: start;
             display:flex;
+        transition: all 0.5s ease-in;
+
 
         }
 
